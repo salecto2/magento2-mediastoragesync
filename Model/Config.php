@@ -1,6 +1,6 @@
 <?php
 
-namespace Phoenix\MediaStorageSync\Model;
+namespace Salecto\MediaStorageSync\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
