@@ -1,17 +1,8 @@
 <?php
-/**
- * Phoenix_MediaStorageSync for Magento 2
- *
- *
- * @category    Phoenix
- * @package     Phoenix_MediaStorageSync
- * @license     http://opensource.org/licenses/MIT MIT
- * @copyright   Copyright (c) 2018 PHOENIX MEDIA GmbH (http://www.phoenix-media.eu)
- */
 
-namespace Phoenix\MediaStorageSync\Model;
+namespace Salecto\MediaStorageSync\Model;
 
-use Phoenix\MediaStorageSync\Helper\Data as Helper;
+use Salecto\MediaStorageSync\Helper\Data as Helper;
 use Magento\Framework\HTTP\ClientFactory;
 use Magento\Framework\HTTP\ClientInterface;
 use Magento\Framework\Filesystem\Io\File;
@@ -101,9 +92,14 @@ class Sync
      */
     protected function saveFileFromRemoteServer($src, $target)
     {
+        if (strstr($target, 'media/') !== false) {
+            $src = preg_replace('/^media\//', '', $src);
+        }
+        
         $fileSaved = false;
         $fileName = basename($src);
         $fileDirectory = $target;
+        
         if ($fileName != $src) {
             $fileDirectory .= dirname($src);
         }
@@ -154,7 +150,7 @@ class Sync
             $client = $this->httpClientFactory->create();
 
             $client->setTimeout(20);
-            $client->addHeader('User-Agent', 'Phoenix MediaStorageSync');
+            $client->addHeader('User-Agent', 'Salecto MediaStorageSync');
             $client->addHeader('Content-Transfer-Encoding', 'binary');
 
             $user = $this->config->getHttpClientUser();

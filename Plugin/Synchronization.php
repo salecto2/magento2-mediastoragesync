@@ -1,20 +1,11 @@
 <?php
-/**
- * Phoenix_MediaStorageSync for Magento 2
- *
- *
- * @category    Phoenix
- * @package     Phoenix_MediaStorageSync
- * @license     http://opensource.org/licenses/MIT MIT
- * @copyright   Copyright (c) 2018 PHOENIX MEDIA GmbH (http://www.phoenix-media.eu)
- */
 
-namespace Phoenix\MediaStorageSync\Plugin;
+namespace Salecto\MediaStorageSync\Plugin;
 
 use Magento\MediaStorage\Model\File\Storage\Database as StorageDatabase;
-use Phoenix\MediaStorageSync\Model\Config;
-use Phoenix\MediaStorageSync\Model\Sync;
-use Phoenix\MediaStorageSync\Helper\Data as Helper;
+use Salecto\MediaStorageSync\Model\Config;
+use Salecto\MediaStorageSync\Model\Sync;
+use Salecto\MediaStorageSync\Helper\Data as Helper;
 
 
 class Synchronization

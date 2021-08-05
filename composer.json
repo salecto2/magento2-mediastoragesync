@@ -1,19 +1,19 @@
 {
-    "name": "phoenix-media/magento2-mediastoragesync",
-    "description": "The module retrieves files in /media from origin server.",
+    "name": "salecto2/magento2-mediastoragesync",
+    "description": "The module retrieves media files from origin server.",
     "require": {
         "php": "^7.0",
         "magento/module-media-storage": "*"
     },
     "type": "magento2-module",
-    "version": "1.2.2",
+    "version": "1.0.0",
     "license": "MIT",
     "autoload": {
         "files": [
             "registration.php"
         ],
         "psr-4": {
-            "Phoenix\\MediaStorageSync\\": ""
+            "Salecto\\MediaStorageSync\\": ""
         }
     }
 }
