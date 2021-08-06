@@ -1,5 +1,5 @@
 # Media Storage Sync
-*This project is a fork of [this repo](https://github.com/PHOENIX-MEDIA/magento2-mediastoragesync). Since it was no longer maintained, and contained critical bugs, we continue maintaining it here in this fork, under a new name. Kudos to [Phoenix Media](https://www.phoenix-media.eu/de/) for their work.* 
+*This project is a fork of [this repo](https://github.com/PHOENIX-MEDIA/magento2-mediastoragesync). Since it was no longer maintained, and contained critical bugs, we haved decided to continue maintaining it, under a new name. Kudos to [Phoenix Media](https://www.phoenix-media.eu/de/) for their work.* 
 ---
 The module retrieves files in /media from an origin server/url. Useful if you have a local development environment for your shop, and don't want to download the whole media folder along with the shop. 
 
