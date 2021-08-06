@@ -1,21 +1,11 @@
 <?xml version="1.0"?>
-<!--
-/**
- * Phoenix_MediaStorageSync for Magento 2
- *
- *
- * @category    Phoenix
- * @package     Phoenix_MediaStorageSync
- * @license     http://opensource.org/licenses/MIT MIT
- * @copyright   Copyright (c) 2018 PHOENIX MEDIA GmbH (http://www.phoenix-media.eu)
- */
--->
+
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\MediaStorage\Model\File\Storage\Database">
-        <plugin name="around_load_by_filename_sync" type="Phoenix\MediaStorageSync\Plugin\Synchronization" sortOrder="1" />
+        <plugin name="around_load_by_filename_sync" type="Salecto\MediaStorageSync\Plugin\Synchronization" sortOrder="1" />
     </type>
     <type name="Magento\Catalog\Api\ProductAttributeMediaGalleryManagementInterface">
-        <plugin name="after_getlist_sync" type="Phoenix\MediaStorageSync\Plugin\Synchronization" sortOrder="1" />
+        <plugin name="after_getlist_sync" type="Salecto\MediaStorageSync\Plugin\Synchronization" sortOrder="1" />
     </type>
-    <type name="Phoenix\MediaStorageSync\Model\Sync" shared="true"/>
+    <type name="Salecto\MediaStorageSync\Model\Sync" shared="true"/>
 </config>

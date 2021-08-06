@@ -1,7 +1,11 @@
-## Phoenix Media Storage Sync
-The module retrieves files in /media from an origin server.
+# Media Storage Sync
+*This project is a fork of [this repo](https://github.com/PHOENIX-MEDIA/magento2-mediastoragesync). Since it was no longer maintained, and contained critical bugs, we haved decided to continue maintaining it, under a new name. Kudos to [Phoenix Media](https://www.phoenix-media.eu/de/) for their work.* 
+---
+The module retrieves files in /media from an origin server/url. Useful if you have a local development environment for your shop, and don't want to download the whole media folder along with the shop. 
 
-### What it does
+This module will try to download the images from the provided url, as they are required. 
+
+## What it does
 
 Imagine you have a fresh local development environment with the Magento code checked out.
 You retrieved the database but you don't have any of the media assets and your store frontend
@@ -14,7 +18,7 @@ products and CMS blocks/pages from a configurable origin server similar to a CDN
 you load an entity from the database. This means you can forget about the media folder and
 just browse the frontend as images are downloaded and saved transparently.
 
-### How it works
+## How it works
 
 In the module's configuration you can configure a base URL, the domain where your production/staging
 Magento instance is located from which to picked the database. In the database the relative
@@ -23,34 +27,30 @@ simply checks if their images are already in media/catalog. If not it uses the b
 appends the relative image path from the database and downloads the files from origin server.
 This slows down page generation the first time you access a page but improves pretty quickly.
 
-For other assets in the media folder we make use of another mechanism: Maybe you recognized
-Magento is shipped with a get.php file in the Magento root. It was intended to retrieve image
-data from a database, save it on the host's filesystem and then deliver it. Well, our assets
-are located at a different web server but beside the retrieval of the asset data the rest is
-pretty similar.
-The get.php is called via a mod_rewrite rule in the media/.htaccess or equivalent rules in
-your nginx configuration. The process is triggered every time a file in /media is not found
-so it is only triggered the first time. The MediaStorageSync module downloads the file, saves
-it and the get.php delivers the file. On the second load the web service can directly deliver
-the static asset.
+## Settings
 
-### How to use
+- `Enable` - Self explanatory
+- `URL` - The url full url of the shop you want to download medias from (e.g. https://yoursite.com/)
+- `HTTP Client User`- Username, in case of need for authorization 
+- `HTTP CLient Password`- Password, in case of need for authorization
+- `Download Limit Per Request`- Limit the amount of downloads per request
+
+## Developer informations
+
+### Install module
 
 1. Install the module via Composer:
-``` 
-composer require phoenix-media/magento2-mediastoragesync
-```
+    ``` 
+    composer require salecto2/magento2-mediastoragesync
+    ```
 2. Enable it
-``` bin/magento module:enable Phoenix_MediaStorageSync ```
+
+    ```
+    php bin/magento module:enable Salecto_MediaStorageSync
+    ```
+
 3. Install the module and rebuild the DI cache
-``` bin/magento setup:upgrade ```
 
-### How to configure
-
-Find the modules configuration in the PHOENIX MEDIA section of your Magento configuration.
-
-Enable: Enable or disable the functionality
-
-URL: Configure the source URL where to retrieve the images (e.g. "https://magento.com/")
-
-optionally configure credentials for BasicAuth.
+    ```
+    php bin/magento setup:upgrade
+    ```

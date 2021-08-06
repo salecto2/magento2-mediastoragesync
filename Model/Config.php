@@ -1,16 +1,6 @@
 <?php
-/**
- * Phoenix_MediaStorageSync for Magento 2
- *
- *
- * @category    Phoenix
- * @package     Phoenix_MediaStorageSync
- * @license     http://opensource.org/licenses/MIT MIT
- * @copyright   Copyright (c) 2018 PHOENIX MEDIA GmbH (http://www.phoenix-media.eu)
- */
 
-namespace Phoenix\MediaStorageSync\Model;
-
+namespace Salecto\MediaStorageSync\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
@@ -103,6 +93,6 @@ class Config
      */
     protected function getXmlPathPrefix()
     {
-        return 'phoenix_mediastoragesync/general/';
+        return 'media_storage_sync/general/';
     }
 }

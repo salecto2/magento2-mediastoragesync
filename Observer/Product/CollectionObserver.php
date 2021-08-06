@@ -1,13 +1,13 @@
 <?php
 
-namespace Phoenix\MediaStorageSync\Observer\Product;
+namespace Salecto\MediaStorageSync\Observer\Product;
 
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Event\Observer;
 use Magento\Catalog\Model\Product\Gallery\ReadHandler as GalleryReadHandler;
-use Phoenix\MediaStorageSync\Model\Sync;
-use Phoenix\MediaStorageSync\Model\Config;
-use Phoenix\MediaStorageSync\Helper\Data as Helper;
+use Salecto\MediaStorageSync\Model\Sync;
+use Salecto\MediaStorageSync\Model\Config;
+use Salecto\MediaStorageSync\Helper\Data as Helper;
 
 class CollectionObserver implements ObserverInterface
 {
@@ -54,7 +54,7 @@ class CollectionObserver implements ObserverInterface
 
                         if ($fileIsNotAvailable) {
                             $this->sync->sync(
-                                $this->helper->getCatalogMediaConfigPath() . $mediaGalleryImage->getData('file'),
+                                $this->helper->getCatalogMediaConfigPath() . "/" . $mediaGalleryImage->getData('file'),
                                 $this->helper->getMediaBaseDir()
                             );
                         }
