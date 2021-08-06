@@ -54,15 +54,3 @@ This slows down page generation the first time you access a page but improves pr
     ```
     php bin/magento setup:upgrade
     ```
-
-
-
-### How to configure
-
-Find the modules configuration in the PHOENIX MEDIA section of your Magento configuration.
-
-Enable: Enable or disable the functionality
-
-URL: Configure the source URL where to retrieve the images (e.g. "https://magento.com/")
-
-optionally configure credentials for BasicAuth.
