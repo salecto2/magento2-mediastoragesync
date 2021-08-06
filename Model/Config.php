@@ -93,6 +93,6 @@ class Config
      */
     protected function getXmlPathPrefix()
     {
-        return 'salecto_mediastoragesync/general/';
+        return 'media_storage_sync/general/';
     }
 }
