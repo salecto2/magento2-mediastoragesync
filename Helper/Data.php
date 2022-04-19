@@ -60,7 +60,7 @@ class Data extends AbstractHelper
     public function getAssetPath($completePath)
     {
         $assetPath = str_replace(
-            $this->directoryList->getPath(DirectoryList::ROOT),
+            $this->directoryList->getPath(DirectoryList::PUB),
             '',
             $completePath
         );
