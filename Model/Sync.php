@@ -92,14 +92,14 @@ class Sync
      */
     protected function saveFileFromRemoteServer($src, $target)
     {
-        if (strstr($target, 'media/') !== false) {
+        if (strpos($target, 'media/') !== false) {
             $src = preg_replace('/^media\//', '', $src);
         }
-        
+
         $fileSaved = false;
         $fileName = basename($src);
         $fileDirectory = $target;
-        
+
         if ($fileName != $src) {
             $fileDirectory .= dirname($src);
         }
@@ -109,7 +109,7 @@ class Sync
                 $this->getFileFromServer($src, $target);
                 if ($this->getHttpClient()->getStatus() == 200) {
                     $this->file->setAllowCreateFolders(true);
-                    $this->file->open(array('path' => $fileDirectory));
+                    $this->file->open(['path' => $fileDirectory]);
                     $fileSaved = $this->file->write($fileName, $this->getHttpClient()->getBody());
                     $this->file->close();
                 }
@@ -146,7 +146,7 @@ class Sync
      */
     public function getHttpClient()
     {
-        if (is_null($this->client)) {
+        if ($this->client === null) {
             $client = $this->httpClientFactory->create();
 
             $client->setTimeout(20);
