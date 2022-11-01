@@ -62,7 +62,7 @@ class Data extends AbstractHelper
         $assetPath = str_replace(
             $this->directoryList->getPath(DirectoryList::PUB),
             '',
-            $completePath
+            (string) $completePath
         );
 
         return $assetPath;
@@ -76,7 +76,7 @@ class Data extends AbstractHelper
     {
         $fileIsNotAvailable = true;
 
-        if (strpos($file, 'no_selection') !== false) {
+        if (strpos((string) $file, 'no_selection') !== false) {
             $file = null;
             $fileIsNotAvailable = false;
         }

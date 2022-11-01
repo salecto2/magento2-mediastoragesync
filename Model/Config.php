@@ -41,10 +41,10 @@ class Config
      */
     public function getUrl()
     {
-        $url = $this->scopeConfig->getValue(
+        $url = (string) $this->scopeConfig->getValue(
             $this->getXmlPathPrefix() . 'url'
         );
-        if (substr($url, -1) == '/') {
+        if (substr($url, -1) === '/') {
             $url = substr($url, 0, -1);
         }
         return $url;
