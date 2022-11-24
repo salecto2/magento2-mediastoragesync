@@ -45,9 +45,23 @@ class CollectionObserver implements ObserverInterface
             $collection = $observer->getCollection();
             foreach ($collection as $product) {
                 $this->galleryReadHandler->execute($product);
-                $mediaGalleryImages = $product->getMediaGalleryImages();
+                if ($product->getTypeId() == 'configurable') {
+                    $mediaGallery = $product->getMediaGallery();
+                    $mediaGalleryImages = $mediaGallery['images'] ?? [];
+                    foreach ($mediaGalleryImages as $mediaGalleryImage) {
+                        $file = $mediaGalleryImage['file'];
+                        $fileIsNotAvailable = $this->helper->fileIsNotAvailable($file);
 
-                if (!empty($mediaGalleryImages)) {
+                        if ($fileIsNotAvailable) {
+                            $this->sync->sync(
+                                $this->helper->getCatalogMediaConfigPath() . $file,
+                                $this->helper->getMediaBaseDir()
+                            );
+                        }
+                    }
+                } else {
+                    $mediaGalleryImages = $product->getMediaGalleryImages();
+
                     foreach ($mediaGalleryImages as $mediaGalleryImage) {
                         $file = $mediaGalleryImage->getData('path');
                         $fileIsNotAvailable = $this->helper->fileIsNotAvailable($file);
