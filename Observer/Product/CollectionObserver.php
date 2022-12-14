@@ -1,5 +1,4 @@
 <?php
-
 namespace Salecto\MediaStorageSync\Observer\Product;
 
 use Magento\Framework\Event\ObserverInterface;
@@ -17,7 +16,7 @@ class CollectionObserver implements ObserverInterface
     protected $configModel;
     protected $helper;
     protected $productRepository;
-
+    
     /**
      * ProductObserver constructor.
      * @param GalleryReadHandler $galleryReadHandler
@@ -25,20 +24,15 @@ class CollectionObserver implements ObserverInterface
      * @param Config $configModel
      * @param Helper $helper
      */
-    public function __construct(
-        GalleryReadHandler $galleryReadHandler,
-        Sync $syncModel,
-        Config $configModel,
-        Helper $helper,
-        ProductRepositoryInterface $productRepository
-    ) {
+    public function __construct(GalleryReadHandler $galleryReadHandler, Sync $syncModel, Config $configModel, Helper $helper, ProductRepositoryInterface $productRepository)
+    {
         $this->galleryReadHandler = $galleryReadHandler;
         $this->sync = $syncModel;
         $this->configModel = $configModel;
         $this->helper = $helper;
         $this->productRepository = $productRepository;
     }
-
+    
     /**
      * @param Observer $observer
      */
@@ -48,24 +42,18 @@ class CollectionObserver implements ObserverInterface
             $collection = $observer->getCollection();
             foreach ($collection as $product) {
                 $product = $this->productRepository->getById($product->getId());
-
+                
                 $this->galleryReadHandler->execute($product);
-
+                
                 $mediaGalleryImages = $product->getMediaGalleryImages();
-
-                foreach ($mediaGalleryImages as $mediaGalleryImage) {
-                    $file = $mediaGalleryImage->getData("path");
-                    $fileIsNotAvailable = $this->helper->fileIsNotAvailable(
-                        $file
-                    );
-
-                    if ($fileIsNotAvailable) {
-                        $this->sync->sync(
-                            $this->helper->getCatalogMediaConfigPath() .
-                                "/" .
-                                $mediaGalleryImage->getData("file"),
-                            $this->helper->getMediaBaseDir()
-                        );
+                if (!empty($mediaGalleryImages)) {
+                    foreach ($mediaGalleryImages as $mediaGalleryImage) {
+                        $file = $mediaGalleryImage->getData("path");
+                        $fileIsNotAvailable = $this->helper->fileIsNotAvailable($file);
+                        
+                        if ($fileIsNotAvailable) {
+                            $this->sync->sync($this->helper->getCatalogMediaConfigPath() . "/" . $mediaGalleryImage->getData("file"), $this->helper->getMediaBaseDir());
+                        }
                     }
                 }
             }
