@@ -2,11 +2,11 @@
     "name": "salecto2/magento2-mediastoragesync",
     "description": "The module retrieves media files from origin server.",
     "require": {
-        "php": "~7.3.0||~7.4.0||~8.1.0",
+        "php": "~7.3.0||~7.4.0||~8.1.0||~8.2.0",
         "magento/module-media-storage": "*"
     },
     "type": "magento2-module",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "license": "MIT",
     "autoload": {
         "files": [
